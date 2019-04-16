@@ -7,7 +7,7 @@ The layout class also makes it easier for us to define layouts than when using a
 
 Note: The ConstraintLayout is also compatible right down to API level 9
 
-`ConstraintLayout features several more attributes`
+**ConstraintLayout features several more attributes**
 * layout_constraintTop_toTopOf
 * layout_constraintTop_toBottomOf
 * layout_constraintBottom_toTopOf
@@ -27,10 +27,52 @@ Note: The ConstraintLayout is also compatible right down to API level 9
 **Vertical Bias**<br/>
 
 It's allows us to position a view along the vertical axis using a bias value
-app:layout_constraintVertical_bias="0.5"<br/>
+`app:layout_constraintVertical_bias="0.5"` <br/>
 
 **Horizontal Bias**<br/>
 
 It's allows us to position a view along the horizontal axis using a bias value
+`app:layout_constraintHorizontal_bias="0.5"` <br/>
 
-app:layout_constraintHorizontal_bias="0.5"
+**ConstraintDimensionRatio**<br/>
+We need to set atleast one constrained dimension to be 0dp
+````
+ <ImageView
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintDimensionRatio="1:0.50"
+        android:background="@drawable/splash"
+        android:layout_height="0dp" />
+````
+**Note**: `app:layout_constraintDimensionRatio="W:H"` <br/>
+In the above example image height ration is half of the width ratio irrespect of screen dimension,So here height is automatically changed based on width ratio and given height ratio value.For the above scnario need to set the top constraint <br/>
+````
+ <ImageView
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        android:background="@drawable/splash"
+        android:layout_height="0dp" />
+````
+Above case set constraint of view and width,height is `o dp` and then dimension ratio is 1:1 here width of image view ration is equal to the height of imageview ratio. <br/>
+
+````
+  <Button
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/splashImage"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="h,1:0.20"
+        android:text="@string/mailbox"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+      />
+      
+  ````
+ app:layout_constraintDimensionRatio="h,1:0.20"
+
+
